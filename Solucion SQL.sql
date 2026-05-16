@@ -2,7 +2,7 @@ USE Monedas
 
 ;WITH
 
--- CTE 1: Cuantos paises usan cada moneda
+--  Cuantos paises usan cada moneda
 PaisesPorMoneda AS (
     SELECT
         IdMoneda,
@@ -11,7 +11,7 @@ PaisesPorMoneda AS (
     GROUP BY IdMoneda
 ),
 
--- CTE 2: Fecha del ultimo cambio por moneda
+--  Fecha del ultimo cambio por moneda
 UltimaFecha AS (
     SELECT
         IdMoneda,
@@ -20,7 +20,7 @@ UltimaFecha AS (
     GROUP BY IdMoneda
 ),
 
--- CTE 3: Valor del ultimo cambio
+--  Valor del ultimo cambio
 UltimoCambio AS (
     SELECT
         CM.IdMoneda,
@@ -30,7 +30,7 @@ UltimoCambio AS (
                         AND CM.Fecha   = UF.UltimaFecha
 ),
 
--- CTE 4: Promedio de los ultimos 30 dias
+--  Promedio de los ultimos 30 dias
 Promedio30Dias AS (
     SELECT
         CM.IdMoneda,
@@ -41,7 +41,7 @@ Promedio30Dias AS (
     GROUP BY CM.IdMoneda
 ),
 
--- CTE 5: Desviacion estandar para volatilidad
+-- Desviacion estandar para volatilidad
 Volatilidad AS (
     SELECT
         CM.IdMoneda,
